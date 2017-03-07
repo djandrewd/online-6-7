@@ -26,7 +26,7 @@ public class CollectionExample {
     // 1. List
     // 2. Queue
     // 3. Map
-    // 4. Set
+    // 4. SetExample
     // 5. Tree
     // 6. Trie
     // 7. Bag
