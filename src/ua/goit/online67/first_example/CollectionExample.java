@@ -25,11 +25,11 @@ public class CollectionExample {
     // In whole world, in any type of programming language you will have next data structures:
     // 1. List
     // 2. Queue
-    // 3. Map
-    // 4. SetExample
+    // 3. Map, Hashtables
+    // 4. Set
     // 5. Tree
     // 6. Trie
-    // 7. Bag
+    // 7. Bag, Heap
     //
     // Some of them do not have implementation in java. We will cover them mostly in next examples.
     //
@@ -69,6 +69,9 @@ public class CollectionExample {
         // java will copy all elements in that array.
         // If not - java will create new copy of this array with needed size.
         Integer[] array2 = arrayInts.toArray(new Integer[]{});
+        //
+        //Object[] a = {1, 2};
+        //Integer[] b  = (Integer[]) a;
         //
         // REMEMBER! Java arrays are not covariant.
         // Next assignment wont work, even if all elements of array1 are integers.

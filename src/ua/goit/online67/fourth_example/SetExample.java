@@ -44,6 +44,13 @@ public class SetExample {
         // 1. Calculation of hash code and get of hash bucked.
         // 2. When two elements have equal hash code - java will search in bucked (linked list inside)
         // until found corresponding element
+        ///
+        // buckets = LinkedList[X];
+        // 1. int hash = o.hashCode();
+        // 2. LinkedList list = buckets[hash % X]
+        // 3. if (!list.contains(o)) {
+        //       list.add(o);
+        // }
         // Worst case: O(N), best case - O(1).
         integers.add(1);
         System.out.println(integers.contains(1));

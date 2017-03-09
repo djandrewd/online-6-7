@@ -28,6 +28,7 @@ public class LinkedListExample {
         // we find needed index.
         // So why we need LinkedList?
         // Main advantage of using linked list is that he implements another interface we need : Queue.
+        // 1 -> 2 -> 3
         Queue<Integer> queue = new LinkedList<>();
         // Queue is the data structure which holds element in FIFO order: first in - first out.
         // To add element into queue you can use either add or offer:
@@ -42,6 +43,8 @@ public class LinkedListExample {
         Deque<Integer> deque = new LinkedList<>();
         deque.addLast(2);
         deque.addLast(1);
+        deque.addFirst(1);
+        deque.pollFirst();
         System.out.println(deque.pollLast());
         System.out.println(deque.pollLast());
         // Upper example is simple stack.
