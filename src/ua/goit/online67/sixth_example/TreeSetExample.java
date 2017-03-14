@@ -40,7 +40,7 @@ public class TreeSetExample {
         Set<A> aSet = new TreeSet<>();
         System.out.println(aSet.add(new A()));
         System.out.println(aSet.add(new A()));
-        // All operations in tree set will always give you O(N)
+        // All operations in tree set will always give you O(log(N))
     }
 
     private static class A implements Comparable<A> {

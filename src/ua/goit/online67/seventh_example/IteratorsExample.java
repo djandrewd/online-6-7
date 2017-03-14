@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * @author andreymi on 3/13/2017.
  */
 public class IteratorsExample {
-    // Word iterator comes from meaning of iterativity which means sequectially.
+    // Word iterator comes from meaning of iterativity which means sequentially.
     // Iterator in java add possibility to traverse elements one by one.
     private static Iterator<Integer> iterator;
 
@@ -85,7 +85,7 @@ public class IteratorsExample {
             it.next();
             it.remove();
         }
-        // as you ssee our initial array is not changed, but resulting array is empty.
+        // as you see our initial array is not changed, but resulting array is empty.
         System.out.println(Arrays.toString(ar));
         System.out.println(Arrays.toString(it.elements));
         // Lets create iterator for linked list from example 3.
@@ -99,6 +99,7 @@ public class IteratorsExample {
         }
         iterator = new LinkedListIterator(list);
         while (iterator.hasNext()) {
+            //iterator.next();
             iterator.remove();
         }
         System.out.println(list);
@@ -122,9 +123,11 @@ public class IteratorsExample {
             System.out.println(value);
         }
         // but gives error....
-        //for (int value: integers) {
-        //    System.out.println(value);
-        //    integers.remove();
-        //}
+        for (int value: new LinkedList<>(integers)) {
+            System.out.println(value);
+            integers.remove();
+        }
+        System.out.println(integers);
+
     }
 }

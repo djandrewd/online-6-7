@@ -21,12 +21,13 @@ public class ComparatorExample {
     private static Comparator<Integer> comparator = new Comparator<Integer>() {
         @Override
         public int compare(Integer o1, Integer o2) {
-            return Integer.compare(o1, o2);
+            return -Integer.compare(o1, o2);
         }
     };
     // Comparable object is interface which class can implements and methid (compareTo) will have same contract as comparator
     private Comparable<Integer> val = 1;
-
+    //
+    //this
     public static void main(String[] args) {
         // You sort only collections which are feasible for this: lists.
         // Sorting in java is made using qsort and merge sort: both of them needs index access.
@@ -35,7 +36,10 @@ public class ComparatorExample {
         integers.add(1);
         integers.add(3);
         integers.add(2);
+        Collections.sort(integers);
+        System.out.println(integers);
         Collections.sort(integers, comparator);
+        System.out.println(integers);
         // or from java8
         integers.sort(comparator);
         System.out.println(integers);
@@ -45,7 +49,7 @@ public class ComparatorExample {
         integers.sort(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return -o1.compareTo(o2);
+                return o1.compareTo(o2);
             }
         });
         System.out.println(integers);

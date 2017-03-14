@@ -1,12 +1,13 @@
 package ua.goit.online67.ninth_example;
 
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Example for enum sets.
  *
- * @author  andreymi on 3/13/2017.
+ * @author andreymi on 3/13/2017.
  */
 public class EnumSetExample {
     // In Java exists very specific and powerful tool as enum set.
@@ -16,10 +17,25 @@ public class EnumSetExample {
         BYE,
         ECHO
     }
+
+    enum State {
+        UP,//0
+        STARTING,//1
+        CLOSING,//2
+        DOWN //3
+    }
+
+    private static final Set<State> RUNNING_STATES =
+            EnumSet.of(State.UP, State.STARTING);
+
     // To create enum set you have to use factory methods: none of, all of, one of, etc.
-    private static Set<Messages> messages = EnumSet.noneOf(Messages.class);
+    private static final Set<Messages> messages = EnumSet.noneOf(Messages.class);
 
     public static void main(String[] args) {
+        Set<Messages> messages = new HashSet<>();
+        messages.add(Messages.HELLO);
+        System.out.println(messages);
+        //
         System.out.println(messages);
         messages = EnumSet.allOf(Messages.class);
         System.out.println(messages);
