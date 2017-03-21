@@ -1,9 +1,13 @@
 package ua.goit.online67.tenth_example;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
  * Example for hash maps.
@@ -14,11 +18,14 @@ public class HashMapExample {
     // In java exists also structure which is puts relations between one value to other value.
     // It is called map. This is general name, that was expired from c++ STL map.
     // So map put relation between key and value.
-    private static Map<String, String> map;
+    private static Map<Long, String> map;
     // First type parameter is type of key, second is type of value.
     // Upper example creates map between string and string.
     // In java exists three main map implementations: hash map, tree map and enum map.
     // Lets start from hash map.
+    //
+    // k -> v.
+    // array = (k, v)[].
     //
     // Idea of using hash map comes from hash table: for each key calculated some value named hash and stored
     // hash table mapped hash code to key and key to value.
@@ -46,6 +53,7 @@ public class HashMapExample {
     public static void main(String[] args) {
         // To add relation into map key -> value use put method.
         // Method put returns previously stored element by key or null when no mapping was found.
+       // hashMap.put("hello", "world1");
         Object prev = hashMap.put("hello", "world");
         System.out.println(hashMap);
         System.out.println(prev);
@@ -88,6 +96,11 @@ public class HashMapExample {
         // To remove all entries use clear()
         hashMap.clear();
         // Other methods uses java8 specific things and will be covered later in this course.
+        Set<Integer> integers = Collections.newSetFromMap(new HashMap<>());
+        LinkedHashMap<Integer, Integer> map1;
+        // not by hashCode. ==.
+        IdentityHashMap<Integer, Integer> map2;
+        WeakHashMap<Integer, Integer> map3;
     }
 
 }

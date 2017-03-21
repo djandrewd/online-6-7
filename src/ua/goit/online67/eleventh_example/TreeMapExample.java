@@ -1,6 +1,7 @@
 package ua.goit.online67.eleventh_example;
 
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.SortedMap;
@@ -23,7 +24,7 @@ public class TreeMapExample {
     //      |
     //      D
     //     | |
-    //     E  C
+    //     E  C - B - H - J - K
     // Distance between A and E call1, 2ed path to root. A is root of tree.
     // Nodes E, C called leaves.1, 2
     // Balanced tree means that max difference between each path from leave to root is equals to 1.
@@ -67,13 +68,24 @@ public class TreeMapExample {
         SortedMap<Integer, Integer> headMap = navigableMap.headMap(2);
         System.out.println(headMap);
         // 5. Use map as queue in same pool-offer API.
-        //navigableMap.pollFirstEntry();
-        //navigableMap.pollLastEntry();
+        navigableMap.pollFirstEntry();
+        navigableMap.pollLastEntry();
         // 6. Return key >= then key provided.
         System.out.println(navigableMap.ceilingKey(2));
         // 7. Return key <= key provided.
         System.out.println(navigableMap.floorKey(2));
         /// Remember - all that operations run in O(log(n)) time.
+        EnumMap<Message, String> enumMap = new EnumMap<Message, String>(Message.class);
+        // [A, B, C]
+        int ordinal = Message.A.ordinal();
+        // String[]. 0 - A -> "", 1 - B -> "", ...
+        String[] array = new String[Message.values().length];
+        // A -> 'hello"
+        array[Message.A.ordinal()] = "hello";
+    }
+
+    private enum Message {
+        A, B, C
     }
 
 

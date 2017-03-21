@@ -1,5 +1,6 @@
 package ua.goit.online67.tenth_example;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -28,6 +29,9 @@ public class SimpleHashMap<K, V> {
 
     public V put(K key, V value) {
         // first hash code is calculated.
+        // A, B
+        // A != B
+        // hashCode(A) == hashCode(B)
         int hashCode = key == null ? 0 : key.hashCode();
         // then bucket is calculated
         int bucket = hashCode % capacity;
@@ -38,8 +42,30 @@ public class SimpleHashMap<K, V> {
             list = new LinkedList<>();
             entries[bucket] = list;
         }
+
+        // key- A, value - V1 (A, V1) , (A, V2)
+        // A - hash code 1, B - hash code 1, A != B
+        // 1. elements = array[16]
+        // 2. A. hashcodeA = 1. bucket = 1 % 16 = 1
+        // 3. list = array[1]. (if list is empty, create)
+        // 4. for (e : list): if e.key equals A (Object.equals) - rewrite value and return prev.
+        // 5. add element A to end.
+        //
+        // [null, {A}, null, ..., null]
+        //
+        // 1. B. hashCodeB = 1. bucket = 1 % 16 = 1
+        // 2. list = array[1].
+        // 3. for (e : list) if e.key equals B.
+        // 4. add element B to end.
+        //
+        // [null, {A -> B -> null}, null, ..., null]
+        //
+        // 1. Insert A. hashCode = 1
+        // 2. A: hashCode = 1, bucket = 1
+        // 3. list = array[bucket]
+        // 4. for (e: list) if e.key equals A -> rewrite new value, return old.
+        //
         // Try to find entry in the linked list.
-        Entry<K, V> oldEntry = null;
         for (Entry<K, V> stored : list) {
             if (key == stored.getKey() || stored.getKey().equals(key)) {
                 // replace entry that was found before
