@@ -2,6 +2,7 @@ package ua.goit.online67.twelve_example;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
@@ -16,6 +17,7 @@ public class GenericClasses {
     static class Holder<T> {
         // This is class which holds any element of type T inside.
         T value;
+        //
 
         Holder(T value) {
             this.value = value;
@@ -25,10 +27,10 @@ public class GenericClasses {
         private T getValue() {
             return value;
         }
+
         // NOTE! static methods as they are not bounded to class variable have to possibility to access class type.
         // Example below will give you exception.
         //private static void someMethod(T type) {
-        //
         //}
 
         // You can combine methods generics with class generics.
@@ -46,7 +48,7 @@ public class GenericClasses {
     }
 
     // But we want it be comparable too? Possible! You can make strict bound to any number of classes.
-    private static class NumbersCmpHolder<T extends Number & Comparator<T>> extends Holder<T> {
+    private static class NumbersCmpHolder<T extends Number & Comparable<T>> extends Holder<T> {
         public NumbersCmpHolder(T value) {
             super(value);
         }
@@ -78,13 +80,15 @@ public class GenericClasses {
         // Why is it problem? Assume we do not know what is inside and try to get long out of holder.
         // And get as expected : Exception in thread "main" java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Long
         // Because holder is holding integer value, not longs.
-        // Long v = (Long) holderRaw.getValue();
-        // System.out.println(v);
+        //Long v = (Long) holderRaw.getValue();
+        //System.out.println(v);
         //
         // Lets try same with collections.
         // It is holding integers.
         List<Integer> integers = Arrays.asList(1, 2, 3, 4);
         List rawList = integers;
+        //Long v1 = (Long) rawList.get(0);
+        //Date v2 = (Date) rawList.get(0);
         // as we know that types are erased we can make this convertions.
         // Class cast exception only occurs when class names are not the same - but here we have lists.
         List<Long> longs = (List<Long>) rawList;
@@ -93,7 +97,7 @@ public class GenericClasses {
         System.out.println(longs.contains(1));
         //As expected : Exception in thread "main" java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Long
         //Expected? Really? :)
-        //Long val = longs.get(0);
+        Long val = longs.get(0);
 
     }
 }

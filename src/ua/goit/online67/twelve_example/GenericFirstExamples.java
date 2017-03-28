@@ -1,6 +1,8 @@
 package ua.goit.online67.twelve_example;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * General examples of generic usages.
@@ -70,7 +72,7 @@ public class GenericFirstExamples {
     //
     // Object
     //   |
-    //  Number
+    //  Number Comparable
     //   |
     //  Long
     //
@@ -82,6 +84,10 @@ public class GenericFirstExamples {
             min = min == null || min.compareTo(val) > 0 ? val : min;
         }
         return min;
+    }
+
+    private static <T1, T2, T3 extends Map<T1, T2>, T4> T1 method() {
+        return null;
     }
 
     // Now out method works for all types and acts as template for any type that can be comparable.

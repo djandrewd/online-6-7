@@ -1,6 +1,7 @@
 package ua.goit.online67.twelve_example;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,6 +30,22 @@ public class MoreGenericsExamples {
         List<GenericClasses.Holder<?>> anyHolders = new ArrayList<>();
         anyHolders.add(new GenericClasses.Holder<>(1));
         anyHolders.add(new GenericClasses.Holder<>("Hello"));
+        //
+        List<List<?>> a = new ArrayList<>();
+        a.add(new ArrayList<Long>());
+        a.add(new ArrayList<String>());
+
+        List<List<? extends Number>> b = new ArrayList<>();
+        b.add(new ArrayList<Long>());
+        //b.add(new ArrayList<String>());
+
+        List<List<? super Number>> c = new ArrayList<>();
+        //c.add(new ArrayList<Long>());
+        c.add(new ArrayList<Number>());
+        c.add(new ArrayList<Object>());
+        //
+        A<?> a1 = new A();
+        a1.toString();
         // What is type of wildcard?  Object
         Object val = anyHolders.get(0).value;
         // You can put lower bound also.. and put inside any of Long, Number, Object.
@@ -40,10 +57,10 @@ public class MoreGenericsExamples {
         addElements(new ArrayList<Object>());
         //
         // You can target type of object you want to use.
-        List<Long> list = Collections.<Long> emptyList();
+        List<Long> list = Collections.<Long>emptyList();
         // This is used when required type cannot be defined by compiler.
         // But in java 8 this is not required and cab be ommited.
-        someMethod(Collections.<String> emptyList());
+        someMethod(Collections.<String>emptyList());
     }
 
     // For example this allowes to add integers.
@@ -56,4 +73,16 @@ public class MoreGenericsExamples {
     private static void someMethod(List<String> list) {
         // print and do somethind..
     }
+
+    private static class A<T> {
+        @Override
+        public String toString() {
+            return "A{}";
+        }
+    }
+
+    private interface Listener<T> {
+        void onMessage(T message);
+    }
+    private static Collection<Listener<?>> listeners;
 }
